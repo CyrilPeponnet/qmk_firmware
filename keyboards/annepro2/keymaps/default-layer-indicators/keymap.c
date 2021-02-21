@@ -9,6 +9,10 @@ enum anne_pro_layers {
   _FN2_LAYER,
 };
 
+
+// This is ROW*MATRIX_COLS + COL
+#define CAPS_LOCATION (MATRIX_COLS * 2 + 0)
+
 // Key symbols are based on QMK. Use them to remap your keyboard
 /*
 * Layer _BASE_LAYER
@@ -21,7 +25,7 @@ enum anne_pro_layers {
 * |-----------------------------------------------------------------------------------------+
 * | Shift      |  z  |  x  |  c  |  v  |  b  |  n  |  m  |  ,  |  .  |  /  |    Shift       |
 * |-----------------------------------------------------------------------------------------+
-* | Ctrl  |  L1   |  Alt  |               space             |  Alt  |  FN1  |  FN2  | Ctrl  |
+* | Ctrl  |  ALT   |  L1  |               space             |  Alt  |  FN1  |  FN2  | Ctrl  |
 * \-----------------------------------------------------------------------------------------/
 * Layer TAP in _BASE_LAYER
 * ,-----------------------------------------------------------------------------------------.
@@ -42,7 +46,7 @@ enum anne_pro_layers {
     KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_LBRC, KC_RBRC, KC_BSLS,
     LT(_FN1_LAYER,KC_CAPS), KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT, KC_ENT,
     KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, RSFT_T(KC_UP),
-    KC_LCTL, KC_LGUI, KC_LALT, KC_SPC, KC_RALT, LT(_FN1_LAYER,KC_LEFT), LT(_FN2_LAYER,KC_DOWN), RCTL_T(KC_RGHT)
+    KC_LCTL, KC_LALT, KC_LGUI, KC_SPC, KC_RALT, LT(_FN1_LAYER,KC_LEFT), LT(_FN2_LAYER,KC_DOWN), RCTL_T(KC_RGHT)
 ),
   /*
   * Layer _FN1_LAYER
@@ -104,11 +108,11 @@ void keyboard_post_init_user(void) {
     // Here are two common functions that you can use. For more LED functions, refer to the file "qmk_ap2_led.h"
 
     // annepro2-shine disables LEDs by default. Uncomment this function to enable them at startup.
-    // annepro2LedEnable();
+    annepro2LedEnable();
 
     // Additionally, it also chooses the first LED profile by default. Refer to the "profiles" array in main.c in
     // annepro2-shine to see the order. Replace "i" with the index of your preferred profile. (i.e the RED profile is index 0)
-    // annepro2LedSetProfile(i);
+    annepro2LedSetProfile(0);
 }
 
 layer_state_t layer_state_set_user(layer_state_t layer) {
@@ -143,4 +147,3 @@ bool led_update_user(led_t leds) {
 
   return true;
 }
-
